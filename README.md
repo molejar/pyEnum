@@ -3,8 +3,8 @@ pyEnum
 
 [![Build Status](https://travis-ci.org/molejar/pyEnum.svg?branch=master)](https://travis-ci.org/molejar/pyEnum)
 [![Coverage Status](https://coveralls.io/repos/github/molejar/pyEnum/badge.svg?branch=master)](https://coveralls.io/github/molejar/pyEnum?branch=master)
-[![PyPI Status](https://img.shields.io/pypi/v/easy_enum.svg)](https://pypi.python.org/pypi/easy_enum)
-[![Python Version](https://img.shields.io/pypi/pyversions/easy_enum.svg)](https://www.python.org)
+[![PyPI Status](https://img.shields.io/pypi/v/easy-enum.svg)](https://pypi.python.org/pypi/easy-enum)
+[![Python Version](https://img.shields.io/pypi/pyversions/easy-enum.svg)](https://www.python.org)
 
 User friendly implementation of documented `Enum` type for Python language.
 
@@ -38,7 +38,7 @@ You may run into a permissions issues running these commands. Here are a few opt
 Usage
 -----
 
-Example for Basic Enum (Enum):
+Example for basic Enum (Enum):
 
 ``` Python
     from easy_enum import Enum
@@ -69,7 +69,7 @@ Example for Basic Enum (Enum):
         print('{} = {} ({})'.format(name, value, desc))
 ```
 
-Example for Extended Enum (EEnum):
+Example for extended Enum (EEnum):
 
 ``` Python
     from easy_enum import EEnum as Enum
