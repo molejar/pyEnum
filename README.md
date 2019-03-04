@@ -6,7 +6,7 @@ pyEnum
 [![PyPI Status](https://img.shields.io/pypi/v/easy_enum.svg)](https://pypi.python.org/pypi/easy_enum)
 [![Python Version](https://img.shields.io/pypi/pyversions/easy_enum.svg)](https://www.python.org)
 
-User friendly implementation of documented Enum type in Python language.
+User friendly implementation of documented `Enum` type for Python language.
 
 Installation
 ------------
@@ -59,7 +59,7 @@ Example for Basic Enum (Enum):
 
 
     # Usage
-    print(TestEnum.FIRST_ITEM)     # 1
+    print(TestEnum.SECOND_ITEM)    # 2
     print(TestEnum['FIRST_ITEM'])  # 1
     print(TestEnum[1])             # 'FIRST_ITEM'
     print(TestEnum[3])             # 'third'

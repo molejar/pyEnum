@@ -35,6 +35,14 @@ def test_names():
     assert TestEnum[3] == 'third'
 
 
+def test_internals():
+    assert len(TestEnum) == 5
+    for item in TestEnum:
+        assert len(item) == 3
+        assert isinstance(item[0], str)
+        assert isinstance(item[2], str)
+
+
 def test_exceptions():
     with pytest.raises(AttributeError):
         value = TestEnum['second']
