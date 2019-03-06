@@ -55,5 +55,13 @@ def test_exceptions():
 def test_extensions():
     assert TestEnum.is_valid(1)
     assert TestEnum.is_valid('third')
+    assert not TestEnum.is_valid(10)
     assert TestEnum.desc('third') == ''
     assert TestEnum.desc(4) == 'Description for fourth item'
+    # invalid parameter for desc method
+    with pytest.raises(AttributeError):
+        value = TestEnum.desc('second')
+    with pytest.raises(ValueError):
+        value = TestEnum.desc(10)
+    with pytest.raises(TypeError):
+        value = TestEnum.desc((1, 2))
