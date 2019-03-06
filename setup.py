@@ -43,6 +43,7 @@ setup(
     packages=['easy_enum'],
     classifiers=[
         'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3',
         'License :: OSI Approved :: Apache Software License',
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development',
