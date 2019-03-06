@@ -58,7 +58,7 @@ def test_extensions():
     assert not TestEnum.is_valid(10)
     assert TestEnum.desc('third') == ''
     assert TestEnum.desc(4) == 'Description for fourth item'
-    # invalid parameter for desc method
+    # Invalid parameters for embedded desc() method
     with pytest.raises(AttributeError):
         value = TestEnum.desc('second')
     with pytest.raises(ValueError):
