@@ -45,26 +45,38 @@ Example for basic Enum (Enum):
 
     class TestEnum(Enum):
 
-        # item with no description
+        # attribute with no description, the name will be 'FIRST_ITEM' and empty string as description
         FIRST_ITEM  = 1
 
-        # item with description
+        # attribute with description
         SECOND_ITEM = (2, 'Description for second item')
 
-        # item with description and custom string name
+        # attribute with description and custom string name
         THIRD_ITEM  = (3, 'third', 'Description for third item')
 
-        # item with custom string name (the description must be specified as empty string)
+        # attribute with custom string name (the description must be specified as empty string)
         FOURTH_ITEM = (4, 'fourth', '')
 
 
-    # Usage
+    # Read attributes value and name
     print(TestEnum.SECOND_ITEM)    # 2
     print(TestEnum['FIRST_ITEM'])  # 1
     print(TestEnum[1])             # 'FIRST_ITEM'
     print(TestEnum[3])             # 'third'
     print(TestEnum['third'])       # 3
+
+    # Get count of all attributes
     print(len(TestEnum))           # 4
+
+    # Get list with all attributes name
+    names = [item[0] for item in TestEnum]
+    print(names)
+
+    # Get list with all attributes value
+    values = [item[1] for item in TestEnum]
+    print(values)
+
+    # Read all items
     for name, value, desc in TestEnum:
         print('{} = {} ({})'.format(name, value, desc))
 ```
@@ -76,22 +88,27 @@ Example for extended Enum (EEnum):
 
     class TestEnum(Enum):
 
-        # item with no description
+        # attribute with no description, the name will be 'FIRST_ITEM' and empty string as description
         FIRST_ITEM  = 1
 
-        # item with description
+        # attribute with description
         SECOND_ITEM = (2, 'Description for second item')
 
-        # item with description and custom string name
+        # attribute with description and custom string name
         THIRD_ITEM  = (3, 'third', 'Description for third item')
 
-        # item with custom string name (the description must be specified as empty string)
+        # attribute with custom string name (the description must be specified as empty string)
         FOURTH_ITEM = (4, 'fourth', '')
 
-    # Usage of extended features
+    # Check if exist attribute with specific value
     print(TestEnum.is_valid(1))       # True
+    print(TestEnum.is_valid(8))       # False
+
+    # Check if exist attribute with specific name
     print(TestEnum.is_valid('first')) # False
     print(TestEnum.is_valid('third')) # True
+
+    # Get attribute description (as parameter use attribute name or value)
     print(TestEnum.desc(1))           # ''
     print(TestEnum.desc(2))           # 'Description for second item'
     print(TestEnum.desc('third'))     # 'Description for third item'

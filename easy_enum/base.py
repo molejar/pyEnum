@@ -18,18 +18,18 @@ class MetaEnum(type):
 
     def __new__(mcs, cls, bases, class_dict):
         _cls_ = super().__new__(mcs, cls, bases, class_dict)
-        _cls_._items_ = set()
+        _cls_._items_ = list()
         for name, value in class_dict.items():
             if name in set(dir(type(cls, (object,), {}))) or (name.startswith('_') and name.endswith('_')):
                 continue
             if isinstance(value, tuple):
                 if len(value) == 2:
-                    _cls_._items_.add((name, value[0], value[1]))
+                    _cls_._items_.append((name, value[0], value[1]))
                 else:
-                    _cls_._items_.add((value[1], value[0], value[2]))
+                    _cls_._items_.append((value[1], value[0], value[2]))
                 setattr(_cls_, name, value[0])
             else:
-                _cls_._items_.add((name, value, ''))
+                _cls_._items_.append((name, value, ''))
 
         return _cls_
 

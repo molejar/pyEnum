@@ -17,7 +17,7 @@ from .base import Enum, EEnum
 
 __author__  = "Martin Olejar"
 __contact__ = "martin.olejar@gmail.com"
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __license__ = "Apache 2.0"
 __status__  = "Development"
 __all__     = [
