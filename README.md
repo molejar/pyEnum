@@ -38,7 +38,7 @@ You may run into a permissions issues running these commands. Here are a few opt
 Usage
 -----
 
-Example for basic Enum (Enum):
+Following example is showing how easy you can use this Enum in your code:
 
 ``` Python
     from easy_enum import Enum
@@ -65,52 +65,31 @@ Example for basic Enum (Enum):
     print(TestEnum[3])             # 'third'
     print(TestEnum['third'])       # 3
 
+    # Check if exist attribute with specific value
+    print(1 in TestEnum)           # True
+    print(8 in TestEnum)           # False
+
+    # Check if exist attribute with specific name
+    print('first' in TestEnum)     # False
+    print('third' in TestEnum)     # True
+
+    # Get attribute description (as parameter use attribute name or value)
+    print(TestEnum.desc(1))        # ''
+    print(TestEnum.desc(2))        # 'Description for second item'
+    print(TestEnum.desc('third'))  # 'Description for third item'
+    
     # Get count of all attributes
     print(len(TestEnum))           # 4
 
     # Get list with all attributes name
     names = [item[0] for item in TestEnum]
-    print(names)
+    print(names)                   # ['FIRST_ITEM', 'SECOND_ITEM', 'third', 'fourth']
 
     # Get list with all attributes value
     values = [item[1] for item in TestEnum]
-    print(values)
+    print(values)                  # [1, 2, 3, 4]
 
     # Read all items
     for name, value, desc in TestEnum:
         print('{} = {} ({})'.format(name, value, desc))
-```
-
-Example for extended Enum (EEnum):
-
-``` Python
-    from easy_enum import EEnum as Enum
-
-    class TestEnum(Enum):
-
-        # attribute with no description, the name will be 'FIRST_ITEM' and empty string as description
-        FIRST_ITEM  = 1
-
-        # attribute with description
-        SECOND_ITEM = (2, 'Description for second item')
-
-        # attribute with description and custom string name
-        THIRD_ITEM  = (3, 'third', 'Description for third item')
-
-        # attribute with custom string name (the description must be specified as empty string)
-        FOURTH_ITEM = (4, 'fourth', '')
-
-    # Check if exist attribute with specific value
-    print(TestEnum.is_valid(1))       # True
-    print(TestEnum.is_valid(8))       # False
-
-    # Check if exist attribute with specific name
-    print(TestEnum.is_valid('first')) # False
-    print(TestEnum.is_valid('third')) # True
-
-    # Get attribute description (as parameter use attribute name or value)
-    print(TestEnum.desc(1))           # ''
-    print(TestEnum.desc(2))           # 'Description for second item'
-    print(TestEnum.desc('third'))     # 'Description for third item'
-
 ```

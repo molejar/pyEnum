@@ -17,21 +17,21 @@ class MetaEnum(type):
     """ MetaClass for Enum Type """
 
     def __new__(mcs, cls, bases, class_dict):
-        _cls_ = super().__new__(mcs, cls, bases, class_dict)
-        _cls_._items_ = list()
+        new_cls = super().__new__(mcs, cls, bases, class_dict)
+        new_cls._items_ = list()
         for name, value in class_dict.items():
             if name in set(dir(type(cls, (object,), {}))) or (name.startswith('_') and name.endswith('_')):
                 continue
             if isinstance(value, tuple):
                 if len(value) == 2:
-                    _cls_._items_.append((name, value[0], value[1]))
+                    new_cls._items_.append((name, value[0], value[1]))
                 else:
-                    _cls_._items_.append((value[1], value[0], value[2]))
-                setattr(_cls_, name, value[0])
+                    new_cls._items_.append((value[1], value[0], value[2]))
+                setattr(new_cls, name, value[0])
             else:
-                _cls_._items_.append((name, value, ''))
+                new_cls._items_.append((name, value, ''))
 
-        return _cls_
+        return new_cls
 
     def __getitem__(cls, key):
         if isinstance(key, str):
@@ -50,26 +50,19 @@ class MetaEnum(type):
     def __iter__(cls):
         return (item for item in cls._items_)
 
+    def __contains__(cls, item):
+        if isinstance(item, str) and item in (item[0] for item in cls._items_):
+            return True
+        if isinstance(item, int) and item in (item[1] for item in cls._items_):
+            return True
+        return False
+
     def __len__(cls):
         return len(cls._items_)
 
 
 class Enum(metaclass=MetaEnum):
     """ Enum Type implementation in Python """
-
-    pass
-
-
-class EEnum(metaclass=MetaEnum):
-    """ Extended Enum Type implementation in Python """
-
-    @classmethod
-    def is_valid(cls, value):
-        for item in cls._items_:
-            if isinstance(value, int) and value == item[1] or \
-               isinstance(value, str) and value.upper() == item[0].upper():
-                return True
-        return False
 
     @classmethod
     def desc(cls, key):

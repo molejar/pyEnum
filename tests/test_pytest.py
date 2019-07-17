@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import pytest
-from easy_enum import EEnum as Enum
+from easy_enum import Enum
 
 
 class TestEnum(Enum):
@@ -35,6 +35,13 @@ def test_names():
     assert TestEnum[3] == 'third'
 
 
+def test_contains():
+    assert 3 in TestEnum
+    assert 0 not in TestEnum
+    assert 'third' in TestEnum
+    assert 'zero' not in TestEnum
+
+
 def test_internals():
     assert len(TestEnum) == 5
     for item in TestEnum:
@@ -43,7 +50,12 @@ def test_internals():
         assert isinstance(item[2], str)
 
 
-def test_exceptions():
+def test_description():
+    assert TestEnum.desc('third') == ''
+    assert TestEnum.desc(4) == 'Description for fourth item'
+
+
+def test_basic_exceptions():
     with pytest.raises(AttributeError):
         value = TestEnum['second']
     with pytest.raises(ValueError):
@@ -52,13 +64,7 @@ def test_exceptions():
         value = TestEnum[(1, 2)]
 
 
-def test_extensions():
-    assert TestEnum.is_valid(1)
-    assert TestEnum.is_valid('third')
-    assert not TestEnum.is_valid(10)
-    assert TestEnum.desc('third') == ''
-    assert TestEnum.desc(4) == 'Description for fourth item'
-    # Invalid parameters for embedded desc() method
+def test_desc_exceptions():
     with pytest.raises(AttributeError):
         value = TestEnum.desc('second')
     with pytest.raises(ValueError):

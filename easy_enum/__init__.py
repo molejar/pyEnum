@@ -13,14 +13,11 @@
 # limitations under the License.
 
 
-from .base import Enum, EEnum
+from .base import Enum
 
 __author__  = "Martin Olejar"
 __contact__ = "martin.olejar@gmail.com"
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 __license__ = "Apache 2.0"
 __status__  = "Development"
-__all__     = [
-    "Enum",
-    "EEnum"
-]
+__all__     = ["Enum"]
