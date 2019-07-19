@@ -21,7 +21,6 @@ class TestEnum(Enum):
     SECOND_ITEM = (2, 'Description for second item')
     THIRD_ITEM  = (3, 'third', '')
     FOURTH_ITEM = (4, 'fourth', 'Description for fourth item')
-    FIFTH_ITEM  = None
 
 
 def test_values():
@@ -43,31 +42,33 @@ def test_contains():
 
 
 def test_internals():
-    assert len(TestEnum) == 5
+    assert len(TestEnum) == 4
     for item in TestEnum:
         assert len(item) == 3
         assert isinstance(item[0], str)
+        assert isinstance(item[1], int)
         assert isinstance(item[2], str)
 
 
 def test_description():
-    assert TestEnum.desc('third') == ''
+    assert TestEnum.desc(1) == ''
     assert TestEnum.desc(4) == 'Description for fourth item'
+    assert TestEnum.desc('third') == ''
 
 
 def test_basic_exceptions():
     with pytest.raises(AttributeError):
-        value = TestEnum['second']
+        _ = TestEnum['second']
     with pytest.raises(ValueError):
-        value = TestEnum[10]
+        _ = TestEnum[10]
     with pytest.raises(TypeError):
-        value = TestEnum[(1, 2)]
+        _ = TestEnum[(1, 2)]
 
 
 def test_desc_exceptions():
     with pytest.raises(AttributeError):
-        value = TestEnum.desc('second')
+        _ = TestEnum.desc('second')
     with pytest.raises(ValueError):
-        value = TestEnum.desc(10)
+        _ = TestEnum.desc(10)
     with pytest.raises(TypeError):
-        value = TestEnum.desc((1, 2))
+        _ = TestEnum.desc((1, 2))
