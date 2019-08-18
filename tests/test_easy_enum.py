@@ -23,15 +23,22 @@ class TestEnum(Enum):
     FOURTH_ITEM = (4, 'fourth', 'Description for fourth item')
 
 
-def test_values():
+def test_get_attr_value():
     assert TestEnum.FIRST_ITEM == 1
     assert TestEnum['FIRST_ITEM'] == 1
     assert TestEnum['third'] == 3
 
 
-def test_names():
+def test_get_attr_name():
     assert TestEnum[1] == 'FIRST_ITEM'
     assert TestEnum[3] == 'third'
+
+
+def test_get_default():
+    assert TestEnum.get('eleven') is None
+    assert TestEnum.get(11) is None
+    assert TestEnum.get('eleven', 11) == 11
+    assert TestEnum.get(11, 'eleven') == 'eleven'
 
 
 def test_contains():
@@ -54,21 +61,17 @@ def test_description():
     assert TestEnum.desc(1) == ''
     assert TestEnum.desc(4) == 'Description for fourth item'
     assert TestEnum.desc('third') == ''
+    assert TestEnum.desc(11) == ''
+    assert TestEnum.desc('eleven') == ''
+    with pytest.raises(TypeError):
+        _ = TestEnum.desc((1, 2))
 
 
-def test_basic_exceptions():
-    with pytest.raises(AttributeError):
+def test_getitem_exceptions():
+    with pytest.raises(KeyError):
         _ = TestEnum['second']
-    with pytest.raises(ValueError):
+    with pytest.raises(KeyError):
         _ = TestEnum[10]
     with pytest.raises(TypeError):
         _ = TestEnum[(1, 2)]
 
-
-def test_desc_exceptions():
-    with pytest.raises(AttributeError):
-        _ = TestEnum.desc('second')
-    with pytest.raises(ValueError):
-        _ = TestEnum.desc(10)
-    with pytest.raises(TypeError):
-        _ = TestEnum.desc((1, 2))

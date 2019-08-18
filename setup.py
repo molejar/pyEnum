@@ -40,7 +40,8 @@ setup(
     url='https://github.com/molejar/pyEnum',
     description='User friendly implementation of Enum in Python',
     long_description=long_description(),
-    packages=['easy_enum'],
+    py_modules=['easy_enum'],
+    test_suite="tests",
     classifiers=[
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',
