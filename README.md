@@ -65,6 +65,11 @@ Following example is showing how easy you can use this Enum in your code:
     print(TestEnum[3])             # 'third'
     print(TestEnum['third'])       # 3
 
+    # Use get method with default value if want skip exception
+    print(TestEnum.get(8))         # None
+    print(TestEnum.get('eight'))   # None
+    print(TestEnum.get(8, 'eight')) # 'eight'
+
     # Check if exist attribute with specific value
     print(1 in TestEnum)           # True
     print(8 in TestEnum)           # False
