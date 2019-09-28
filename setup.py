@@ -41,7 +41,6 @@ setup(
     description='User friendly implementation of Enum in Python',
     long_description=long_description(),
     py_modules=['easy_enum'],
-    test_suite="tests",
     classifiers=[
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',

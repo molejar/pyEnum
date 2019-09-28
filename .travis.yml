@@ -10,7 +10,7 @@ install:
   - pip install -e .
   
 script:
-  - py.test --cov=easy_enum tests/*
+  - py.test --cov=easy_enum tests.py
   
 after_success:
   - coveralls
